@@ -19,7 +19,7 @@
   </prerequisites>
 
   <properties>
-    <java.version>7</java.version>
+    <java.version>8</java.version>
     <timestamp>${maven.build.timestamp}</timestamp>
     <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
     <junit.version>4.12</junit.version>
