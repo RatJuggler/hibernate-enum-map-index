@@ -22,13 +22,21 @@
     <java.version>8</java.version>
     <timestamp>${maven.build.timestamp}</timestamp>
     <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
-    <junit.version>4.12</junit.version>
+    <slf4j.version>1.7.25</slf4j.version>
     <mysql.driver.version>8.0.11</mysql.driver.version>
     <hibernate.version>5.3.2.Final</hibernate.version>
+    <junit.version>4.12</junit.version>
     <h2.version>1.4.197</h2.version>
   </properties>
 
   <dependencies>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
@@ -56,6 +64,7 @@
       <version>${h2.version}</version>
       <scope>test</scope>
     </dependency>
+
   </dependencies>
 
   <build>
