@@ -1,11 +1,16 @@
 package com.rj.hibernate;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 
 public class JPAHibernateCRUDTest extends JPAHibernateTest {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(JPAHibernateCRUDTest.class);
 
   private List<Monster> getAllMonsters() {
     return em.createNamedQuery("Monster.getAll", Monster.class).getResultList();
@@ -14,7 +19,7 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
   @Test
   public void testMonsterEntity1() {
     Monster monster = em.find(Monster.class, 1);
-    System.out.println(monster);
+    LOGGER.info(monster.toString());
     assertNotNull(monster);
     assertEquals("Godzilla", monster.getName());
     assertEquals(Size.LARGE, monster.getSize());
@@ -24,7 +29,7 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
   @Test
   public void testMonsterEntity2() {
     Monster monster = em.find(Monster.class, 2);
-    System.out.println(monster);
+    LOGGER.info(monster.toString());
     assertNotNull(monster);
     assertEquals("Giant Badger", monster.getName());
     assertEquals(Size.MEDIUM, monster.getSize());
@@ -34,7 +39,7 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
   @Test
   public void testMonsterEntity3() {
     Monster monster = em.find(Monster.class, 3);
-    System.out.println(monster);
+    LOGGER.info(monster.toString());
     assertNotNull(monster);
     assertEquals("Gremlin", monster.getName());
     assertEquals(Size.SMALL, monster.getSize());
