@@ -73,7 +73,7 @@ public class Monster {
 
   @Override
   public String toString() {
-    String monster = "Monster{" + "id=" + id + ", name='" + name + "\', size=" + size + '}';
+    String monster = "\nMonster{" + "id=" + id + ", name='" + name + "\', size=" + size + '}';
     for (Damage damage : attacks.values()) {
       monster += "\n- " + damage;
     }
