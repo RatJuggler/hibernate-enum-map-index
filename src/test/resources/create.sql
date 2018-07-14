@@ -2,5 +2,15 @@ CREATE TABLE Monster (
   ID integer NOT NULL,
   NAME varchar(255) DEFAULT NULL,
   SIZE integer,
-  PRIMARY KEY (`id`)
-)
+  PRIMARY KEY (ID)
+);
+CREATE TABLE Damage (
+  ID integer NOT NULL,
+  MONSTERID integer NOT NULL,
+  ATTACK integer,
+  MULTIPLIER integer,
+  PRIMARY KEY (ID)
+);
+ALTER TABLE Damage
+ADD CONSTRAINT Damage_Monster
+FOREIGN KEY (MONSTERID) REFERENCES Monster;
