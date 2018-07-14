@@ -8,6 +8,7 @@
 
     <!-- Domain classes we are testing.-->
     <class>com.rj.hibernate.Monster</class>
+    <class>com.rj.hibernate.Damage</class>
 
     <properties>
       <!-- Configuring JDBC properties -->
@@ -17,7 +18,7 @@
       <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
       <property name="hibernate.hbm2ddl.auto" value="validate"/>
       <property name="hibernate.show_sql" value="true"/>
-      <property name="hibernate.format_sql" value="false"/>
+      <property name="hibernate.format_sql" value="true"/>
     </properties>
   </persistence-unit>
 </persistence>
