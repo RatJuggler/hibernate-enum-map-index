@@ -14,25 +14,31 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
   @Test
   public void testMonsterEntity1() {
     Monster monster = em.find(Monster.class, 1);
+    System.out.println(monster);
     assertNotNull(monster);
     assertEquals("Godzilla", monster.getName());
     assertEquals(Size.LARGE, monster.getSize());
+    assertEquals(2, monster.getAttacks().size());
   }
 
   @Test
   public void testMonsterEntity2() {
     Monster monster = em.find(Monster.class, 2);
+    System.out.println(monster);
     assertNotNull(monster);
     assertEquals("Giant Badger", monster.getName());
     assertEquals(Size.MEDIUM, monster.getSize());
+    assertEquals(2, monster.getAttacks().size());
   }
 
   @Test
   public void testMonsterEntity3() {
     Monster monster = em.find(Monster.class, 3);
+    System.out.println(monster);
     assertNotNull(monster);
     assertEquals("Gremlin", monster.getName());
     assertEquals(Size.SMALL, monster.getSize());
+    assertEquals(1, monster.getAttacks().size());
   }
 
   @Test
@@ -43,7 +49,10 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
   @Test
   public void testPersist() {
     em.getTransaction().begin();
-    em.persist(new Monster(10, "Sulley", Size.SMALL));
+    Monster tRex = new Monster(10, "Tyrannosaurus Rex", Size.MEDIUM);
+    Damage tRexAttack = new Damage(10, Attack.BITE, 10);
+    tRex.addAttack(tRexAttack);
+    em.persist(tRex);
     em.getTransaction().commit();
 
     List<Monster> monsters = getAllMonsters();
