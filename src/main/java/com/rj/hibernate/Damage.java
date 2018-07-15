@@ -1,10 +1,11 @@
 package com.rj.hibernate;
 
-import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Type;
 
 @Entity
 public class Damage {
@@ -16,7 +17,7 @@ public class Damage {
   @JoinColumn(name = "MONSTERID", nullable = false)
   private Monster monster;
 
-  @Convert(converter = AttackConverter.class)
+  @Type(type = "com.rj.hibernate.AttackType")
   private Attack attack;
 
   private Integer multiplier;
