@@ -3,14 +3,16 @@ package com.rj.hibernate;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.MapKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.MapKeyType;
 import org.hibernate.annotations.Type;
 
 @Entity
@@ -24,8 +26,10 @@ public class Monster {
   @Type(type = "com.rj.hibernate.SizeType")
   private Size size;
 
-  @OneToMany(mappedBy = "monster", cascade = CascadeType.ALL, orphanRemoval = true)
-  @MapKey(name = "attack")
+  @ElementCollection
+  @CollectionTable(name = "Damage", joinColumns = @JoinColumn(name = "monsterid"))
+  @MapKeyType(@Type(type = "com.rj.hibernate.AttackType"))
+  @MapKeyColumn(name = "attack")
   private Map<Attack, Damage> attacks = new HashMap<>();
 
   public Monster() {}
@@ -64,9 +68,12 @@ public class Monster {
     return attacks;
   }
 
-  public void addAttack(Damage damage) {
-    damage.setMonster(this);
-    attacks.put(damage.getAttack(), damage);
+  public Damage getAttack(Attack attack) {
+    return attacks.get(attack);
+  }
+
+  public void addAttack(Attack attack, Damage damage) {
+    attacks.put(attack, damage);
   }
 
   @Override
