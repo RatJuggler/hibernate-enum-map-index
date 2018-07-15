@@ -5,8 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class JPAHibernateCRUDTest extends JPAHibernateTest {
 
@@ -24,6 +25,8 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
     assertEquals("Godzilla", monster.getName());
     assertEquals(Size.LARGE, monster.getSize());
     assertEquals(2, monster.getAttacks().size());
+    monster.getAttacks().containsKey(Attack.STOMP);
+    monster.getAttacks().containsKey(Attack.RADIOACTIVE_FIRE);
   }
 
   @Test
@@ -34,6 +37,8 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
     assertEquals("Giant Badger", monster.getName());
     assertEquals(Size.MEDIUM, monster.getSize());
     assertEquals(2, monster.getAttacks().size());
+    monster.getAttacks().containsKey(Attack.BITE);
+    monster.getAttacks().containsKey(Attack.CLAW);
   }
 
   @Test
@@ -44,6 +49,7 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
     assertEquals("Gremlin", monster.getName());
     assertEquals(Size.SMALL, monster.getSize());
     assertEquals(1, monster.getAttacks().size());
+    monster.getAttacks().containsKey(Attack.MISCHIEF);
   }
 
   @Test
@@ -53,6 +59,9 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
 
   @Test
   public void testPersist() {
+    Monster monster = em.find(Monster.class, 10);
+    assertNull(monster);
+
     em.getTransaction().begin();
     Monster tRex = new Monster(10, "Tyrannosaurus Rex", Size.MEDIUM);
     Damage tRexAttack = new Damage(10, Attack.BITE, 10);
@@ -60,10 +69,17 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
     em.persist(tRex);
     em.getTransaction().commit();
 
-    List<Monster> monsters = getAllMonsters();
+    testNewMonsterEntity();
+  }
 
-    assertNotNull(monsters);
-    assertEquals(4, monsters.size());
+  private void testNewMonsterEntity() {
+    Monster monster = em.find(Monster.class, 10);
+    LOGGER.info(monster.toString());
+    assertNotNull(monster);
+    assertEquals("Tyrannosaurus Rex", monster.getName());
+    assertEquals(Size.MEDIUM, monster.getSize());
+    assertEquals(1, monster.getAttacks().size());
+    monster.getAttacks().containsKey(Attack.BITE);
   }
 
   @Test
