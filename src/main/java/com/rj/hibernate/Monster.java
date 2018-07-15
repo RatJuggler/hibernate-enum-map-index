@@ -7,7 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.MapKey;
-import javax.persistence.MapKeyEnumerated;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -25,7 +24,6 @@ public class Monster {
 
   @OneToMany(mappedBy = "monster", cascade = CascadeType.ALL, orphanRemoval = true)
   @MapKey(name = "attack")
-  @MapKeyEnumerated
   private Map<Attack, Damage> attacks = new HashMap<>();
 
   public Monster() {}

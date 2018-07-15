@@ -15,6 +15,7 @@ public class Damage {
   @JoinColumn(name = "MONSTERID", nullable = false)
   private Monster monster;
 
+  // This enum will processed by the AttackConverter class.
   private Attack attack;
 
   private Integer multiplier;
