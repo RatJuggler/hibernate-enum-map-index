@@ -5,8 +5,6 @@ import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.MapKey;
 import javax.persistence.MapKeyEnumerated;
@@ -22,7 +20,7 @@ public class Monster {
   private Integer id;
   private String name;
 
-  @Enumerated(EnumType.ORDINAL)
+  // This enum will processed by the SizeConverter class.
   private Size size;
 
   @OneToMany(mappedBy = "monster", cascade = CascadeType.ALL, orphanRemoval = true)
