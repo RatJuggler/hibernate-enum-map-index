@@ -4,13 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.MapKey;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Type;
 
 @Entity
 @NamedQueries(value = { @NamedQuery(name = "Monster.getAll", query = "SELECT m FROM Monster m") })
@@ -20,7 +21,7 @@ public class Monster {
   private Integer id;
   private String name;
 
-  @Convert(converter = SizeConverter.class)
+  @Type(type = "com.rj.hibernate.SizeType")
   private Size size;
 
   @OneToMany(mappedBy = "monster", cascade = CascadeType.ALL, orphanRemoval = true)
