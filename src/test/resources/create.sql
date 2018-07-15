@@ -5,11 +5,10 @@ CREATE TABLE Monster (
   PRIMARY KEY (ID)
 );
 CREATE TABLE Damage (
-  ID integer NOT NULL,
   MONSTERID integer NOT NULL,
   ATTACK integer,
   MULTIPLIER integer,
-  PRIMARY KEY (ID)
+  PRIMARY KEY (MONSTERID, ATTACK)
 );
 ALTER TABLE Damage
 ADD CONSTRAINT Damage_Monster
