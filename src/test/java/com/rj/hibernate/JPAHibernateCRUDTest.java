@@ -25,8 +25,12 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
     assertEquals("Godzilla", monster.getName());
     assertEquals(Size.LARGE, monster.getSize());
     assertEquals(2, monster.getAttacks().size());
-    monster.getAttacks().containsKey(Attack.STOMP);
-    monster.getAttacks().containsKey(Attack.RADIOACTIVE_FIRE);
+    Damage damage = monster.getAttack(Attack.STOMP);
+    assertNotNull(damage);
+    assertEquals(100, damage.getMultiplier().intValue());
+    damage = monster.getAttack(Attack.RADIOACTIVE_FIRE);
+    assertNotNull(damage);
+    assertEquals(1000, damage.getMultiplier().intValue());
   }
 
   @Test
@@ -37,8 +41,12 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
     assertEquals("Giant Badger", monster.getName());
     assertEquals(Size.MEDIUM, monster.getSize());
     assertEquals(2, monster.getAttacks().size());
-    monster.getAttacks().containsKey(Attack.BITE);
-    monster.getAttacks().containsKey(Attack.CLAW);
+    Damage damage = monster.getAttack(Attack.BITE);
+    assertNotNull(damage);
+    assertEquals(1, damage.getMultiplier().intValue());
+    damage = monster.getAttack(Attack.CLAW);
+    assertNotNull(damage);
+    assertEquals(2, damage.getMultiplier().intValue());
   }
 
   @Test
@@ -49,7 +57,9 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
     assertEquals("Gremlin", monster.getName());
     assertEquals(Size.SMALL, monster.getSize());
     assertEquals(1, monster.getAttacks().size());
-    monster.getAttacks().containsKey(Attack.MISCHIEF);
+    Damage damage = monster.getAttack(Attack.MISCHIEF);
+    assertNotNull(damage);
+    assertEquals(5, damage.getMultiplier().intValue());
   }
 
   @Test
@@ -79,7 +89,9 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
     assertEquals("Tyrannosaurus Rex", monster.getName());
     assertEquals(Size.MEDIUM, monster.getSize());
     assertEquals(1, monster.getAttacks().size());
-    monster.getAttacks().containsKey(Attack.BITE);
+    Damage damage = monster.getAttack(Attack.BITE);
+    assertNotNull(damage);
+    assertEquals(10, damage.getMultiplier().intValue());
   }
 
   @Test

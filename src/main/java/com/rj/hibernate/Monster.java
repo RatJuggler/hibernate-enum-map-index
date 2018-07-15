@@ -64,6 +64,10 @@ public class Monster {
     return attacks;
   }
 
+  public Damage getAttack(Attack attack) {
+    return attacks.get(attack);
+  }
+
   public void addAttack(Damage damage) {
     damage.setMonster(this);
     attacks.put(damage.getAttack(), damage);
