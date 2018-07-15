@@ -2,7 +2,7 @@ package com.rj.hibernate;
 
 public enum Size {
 
-//  ENORMOUS,  Adding this would break the tests because it changes the Ordinals.
+  ENORMOUS(9),
   LARGE(0),
   MEDIUM(1),
   SMALL(2);
@@ -19,6 +19,9 @@ public enum Size {
 
   public static Size fromCode(Integer code) {
     switch (code) {
+    case 9:
+      return Size.ENORMOUS;
+
     case 0:
       return Size.LARGE;
 

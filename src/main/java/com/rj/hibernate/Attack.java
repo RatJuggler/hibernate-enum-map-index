@@ -2,7 +2,7 @@ package com.rj.hibernate;
 
 public enum Attack {
 
-//ROAR,  Adding this would break the tests because it changes the Ordinals.
+  ROAR(5),
   BITE(0),
   CLAW(1),
   STOMP(2),
@@ -21,6 +21,9 @@ public enum Attack {
 
   public static Attack fromCode(Integer code) {
     switch (code) {
+    case 5:
+      return Attack.ROAR;
+
     case 0:
       return Attack.BITE;
 
