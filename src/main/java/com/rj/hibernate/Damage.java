@@ -1,5 +1,6 @@
 package com.rj.hibernate;
 
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -15,7 +16,7 @@ public class Damage {
   @JoinColumn(name = "MONSTERID", nullable = false)
   private Monster monster;
 
-  // This enum will processed by the AttackConverter class.
+  @Convert(converter = AttackConverter.class)
   private Attack attack;
 
   private Integer multiplier;
