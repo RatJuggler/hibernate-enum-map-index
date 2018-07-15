@@ -24,7 +24,8 @@
     <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
     <slf4j.version>1.7.25</slf4j.version>
     <mysql.driver.version>8.0.11</mysql.driver.version>
-    <hibernate.version>5.3.2.Final</hibernate.version>
+    <latest.hibernate.version>5.3.2.Final</latest.hibernate.version>
+    <platform.hibernate.version>5.0.12.Final</platform.hibernate.version>
     <junit.version>4.12</junit.version>
     <h2.version>1.4.197</h2.version>
   </properties>
@@ -46,7 +47,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-entitymanager</artifactId>
-      <version>${hibernate.version}</version>
+      <version>${latest.hibernate.version}</version>
     </dependency>
 
     <!-- Dependencies for standalone tests including database calls. -->
