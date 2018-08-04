@@ -11,8 +11,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -22,7 +22,7 @@ public class JPAHibernateTest {
   protected static EntityManager em;
 
   @BeforeClass
-  public static void init() throws FileNotFoundException, SQLException {
+  public static void init() {
     emf = Persistence.createEntityManagerFactory("monster-test");
     em = emf.createEntityManager();
   }
@@ -30,15 +30,12 @@ public class JPAHibernateTest {
   @Before
   public void initializeDatabase() {
     Session session = em.unwrap(Session.class);
-    session.doWork(new Work() {
-      @Override
-      public void execute(Connection connection) throws SQLException {
-        try {
-          File script = new File(getClass().getResource("/data.sql").getFile());
-          RunScript.execute(connection, new FileReader(script));
-        } catch (FileNotFoundException e) {
-          throw new RuntimeException("could not initialize with script");
-        }
+    session.doWork(connection -> {
+      File script = new File(getClass().getResource("/data.sql").getFile());
+      try (FileReader fileReader = new FileReader(script)) {
+        RunScript.execute(connection, fileReader);
+      } catch (IOException ioe) {
+        throw new RuntimeException("Could not initialize with script!", ioe);
       }
     });
   }
