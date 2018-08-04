@@ -14,18 +14,22 @@ public class SizeJavaTypeDescriptor extends AbstractTypeDescriptor<Size> {
     super(Size.class);
   }
 
+  @Override
   public String toString(Size value) {
     return value == null ? null : value.name();
   }
 
+  @Override
   public Size fromString(String string) {
     return string == null ? null : Size.valueOf(string);
   }
 
+  @Override
   public <X> X unwrap(Size value, Class<X> type, WrapperOptions options) {
     return IntegerTypeDescriptor.INSTANCE.unwrap(value == null ? null : value.getCode(), type, options);
   }
 
+  @Override
   public <X> Size wrap(X value, WrapperOptions options) {
     return Size.fromCode(IntegerTypeDescriptor.INSTANCE.wrap(value, options));
   }

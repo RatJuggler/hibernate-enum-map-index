@@ -13,6 +13,7 @@ public class AttackType extends AbstractSingleColumnStandardBasicType<Attack> {
     super(IntegerTypeDescriptor.INSTANCE, AttackJavaTypeDescriptor.INSTANCE);
   }
 
+  @Override
   public String getName() {
     return "attack";
   }

@@ -13,6 +13,7 @@ public class SizeType extends AbstractSingleColumnStandardBasicType<Size> {
     super(IntegerTypeDescriptor.INSTANCE, SizeJavaTypeDescriptor.INSTANCE);
   }
 
+  @Override
   public String getName() {
     return "size";
   }
