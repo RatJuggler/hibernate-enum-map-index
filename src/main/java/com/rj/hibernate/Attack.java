@@ -2,12 +2,12 @@ package com.rj.hibernate;
 
 public enum Attack {
 
-  ROAR(5),
-  BITE(0),
-  CLAW(1),
-  STOMP(2),
-  MISCHIEF(3),
-  RADIOACTIVE_FIRE(4);
+  ROAR(Integer.valueOf(5)),
+  BITE(Integer.valueOf(0)),
+  CLAW(Integer.valueOf(1)),
+  STOMP(Integer.valueOf(2)),
+  MISCHIEF(Integer.valueOf(3)),
+  RADIOACTIVE_FIRE(Integer.valueOf(4));
 
   private Integer code;
 
@@ -20,7 +20,7 @@ public enum Attack {
   }
 
   public static Attack fromCode(Integer code) {
-    switch (code) {
+    switch (code.intValue()) {
     case 5:
       return Attack.ROAR;
 

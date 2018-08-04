@@ -2,10 +2,10 @@ package com.rj.hibernate;
 
 public enum Size {
 
-  ENORMOUS(9),
-  LARGE(0),
-  MEDIUM(1),
-  SMALL(2);
+  ENORMOUS(Integer.valueOf(9)),
+  LARGE(Integer.valueOf(0)),
+  MEDIUM(Integer.valueOf(1)),
+  SMALL(Integer.valueOf(2));
 
   private Integer code;
 
@@ -18,7 +18,7 @@ public enum Size {
   }
 
   public static Size fromCode(Integer code) {
-    switch (code) {
+    switch (code.intValue()) {
     case 9:
       return Size.ENORMOUS;
 
