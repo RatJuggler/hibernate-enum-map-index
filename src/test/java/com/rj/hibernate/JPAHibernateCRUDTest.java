@@ -19,7 +19,7 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
 
   @Test
   public void testMonsterEntity1() {
-    Monster monster = em.find(Monster.class, Integer.valueOf(1));
+    Monster monster = em.find(Monster.class, 1);
     LOGGER.info(monster.toString());
     assertNotNull(monster);
     assertEquals("Godzilla", monster.getName());
@@ -35,7 +35,7 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
 
   @Test
   public void testMonsterEntity2() {
-    Monster monster = em.find(Monster.class, Integer.valueOf(2));
+    Monster monster = em.find(Monster.class, 2);
     LOGGER.info(monster.toString());
     assertNotNull(monster);
     assertEquals("Giant Badger", monster.getName());
@@ -51,7 +51,7 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
 
   @Test
   public void testMonsterEntity3() {
-    Monster monster = em.find(Monster.class, Integer.valueOf(3));
+    Monster monster = em.find(Monster.class, 3);
     LOGGER.info(monster.toString());
     assertNotNull(monster);
     assertEquals("Gremlin", monster.getName());
@@ -69,12 +69,12 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
 
   @Test
   public void testPersist() {
-    Monster monster = em.find(Monster.class, Integer.valueOf(10));
+    Monster monster = em.find(Monster.class, 10);
     assertNull(monster);
 
     em.getTransaction().begin();
-    Monster tRex = new Monster(Integer.valueOf(10), "Tyrannosaurus Rex", Size.MEDIUM);
-    Damage tRexAttack = new Damage(Integer.valueOf(10));
+    Monster tRex = new Monster(10, "Tyrannosaurus Rex", Size.MEDIUM);
+    Damage tRexAttack = new Damage(10);
     tRex.addAttack(Attack.BITE, tRexAttack);
     em.persist(tRex);
     em.getTransaction().commit();
@@ -83,7 +83,7 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
   }
 
   private void testNewMonsterEntity() {
-    Monster monster = em.find(Monster.class, Integer.valueOf(10));
+    Monster monster = em.find(Monster.class, 10);
     LOGGER.info(monster.toString());
     assertNotNull(monster);
     assertEquals("Tyrannosaurus Rex", monster.getName());
@@ -96,7 +96,7 @@ public class JPAHibernateCRUDTest extends JPAHibernateTest {
 
   @Test
   public void testDelete() {
-    Monster monster = em.find(Monster.class, Integer.valueOf(1));
+    Monster monster = em.find(Monster.class, 1);
 
     em.getTransaction().begin();
     em.remove(monster);
