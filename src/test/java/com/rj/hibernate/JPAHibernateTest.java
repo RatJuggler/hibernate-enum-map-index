@@ -2,7 +2,6 @@ package com.rj.hibernate;
 
 import org.h2.tools.RunScript;
 import org.hibernate.Session;
-import org.hibernate.jdbc.Work;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -13,8 +12,6 @@ import javax.persistence.Persistence;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 public class JPAHibernateTest {
 
