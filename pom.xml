@@ -23,7 +23,7 @@
     <timestamp>${maven.build.timestamp}</timestamp>
     <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
     <slf4j.version>1.7.25</slf4j.version>
-    <mysql.driver.version>8.0.19</mysql.driver.version>
+    <mysql.driver.version>8.0.28</mysql.driver.version>
     <hibernate.version>5.4.4.Final</hibernate.version>
     <junit.version>4.13.1</junit.version>
     <h2.version>1.4.200</h2.version>
